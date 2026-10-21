@@ -156,7 +156,7 @@ class ScenarioGenerator:
             return terrain, meta
 
         elif scenario_id == "SC-14_environmental_replan":
-            terrain = PlanetaryTerrain(size_x, size_y, res, base_slope_deg=6.0, undulation_amp=0.7, undulation_wavelength_m=15.0, seed=seed)
+            terrain = PlanetaryTerrain(size_x, size_y, res, base_slope_deg=6.0, undulation_amplitude_m=0.7, undulation_wavelength_m=15.0, seed=seed)
             sun_elevation_deg = 15.0
             sun_azimuth_deg = 60.0
             for i in range(12):

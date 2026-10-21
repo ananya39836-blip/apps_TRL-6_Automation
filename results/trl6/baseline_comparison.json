@@ -1,0 +1,38 @@
+{
+  "scenario": "SC-04_dense_obstacle_field",
+  "seed": 100,
+  "baselines": {
+    "Baseline_1_StraightLine": {
+      "name": "Baseline_1_StraightLine",
+      "success": false,
+      "collisions": 40,
+      "path_length_m": 28.28,
+      "latency_ms": 4.12,
+      "curvature_continuous": false
+    },
+    "Baseline_2_Grid_AStar": {
+      "name": "Baseline_2_Grid_AStar",
+      "success": true,
+      "collisions": 0,
+      "path_length_m": 20.4,
+      "latency_ms": 10.18,
+      "curvature_continuous": false
+    },
+    "Baseline_3_Terrain_AStar": {
+      "name": "Baseline_3_Terrain_AStar",
+      "success": true,
+      "collisions": 0,
+      "path_length_m": 21.0,
+      "latency_ms": 406.43,
+      "curvature_continuous": false
+    },
+    "Proposed_Kinodynamic_Hybrid_AStar": {
+      "name": "Proposed_Kinodynamic_Hybrid_AStar",
+      "success": false,
+      "collisions": 1,
+      "path_length_m": 23.85,
+      "latency_ms": 3015.89,
+      "curvature_continuous": true
+    }
+  }
+}

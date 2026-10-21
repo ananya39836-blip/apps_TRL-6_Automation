@@ -1,0 +1,62 @@
+{
+  "proposed_full": {
+    "condition": "proposed_full",
+    "safe_handled": true,
+    "success": false,
+    "failure_reason": "SAFE_STOP_COMPLETE",
+    "collision_count": 0,
+    "min_clearance_m": 10.0,
+    "ate_rmse_m": 0.0536,
+    "planning_latency_ms": 13.59
+  },
+  "ablation_a_no_slope_cost": {
+    "condition": "ablation_a_no_slope_cost",
+    "safe_handled": true,
+    "success": false,
+    "failure_reason": "SAFE_STOP_COMPLETE",
+    "collision_count": 0,
+    "min_clearance_m": 10.0,
+    "ate_rmse_m": 0.0558,
+    "planning_latency_ms": 10.31
+  },
+  "ablation_b_no_dynamic_obstacles": {
+    "condition": "ablation_b_no_dynamic_obstacles",
+    "safe_handled": true,
+    "success": false,
+    "failure_reason": "SAFE_STOP_COMPLETE",
+    "collision_count": 0,
+    "min_clearance_m": 10.0,
+    "ate_rmse_m": 0.0492,
+    "planning_latency_ms": 10.96
+  },
+  "ablation_c_no_replanning": {
+    "condition": "ablation_c_no_replanning",
+    "safe_handled": true,
+    "success": false,
+    "failure_reason": "SAFE_STOP_COMPLETE",
+    "collision_count": 0,
+    "min_clearance_m": 10.0,
+    "ate_rmse_m": 0.0536,
+    "planning_latency_ms": 11.11
+  },
+  "ablation_d_no_sensor_fusion": {
+    "condition": "ablation_d_no_sensor_fusion",
+    "safe_handled": false,
+    "success": false,
+    "failure_reason": "COLLISION_LETHAL_OBSTACLE",
+    "collision_count": 1,
+    "min_clearance_m": 10.0,
+    "ate_rmse_m": 0.0528,
+    "planning_latency_ms": 13.37
+  },
+  "ablation_e_oracle_localization": {
+    "condition": "ablation_e_oracle_localization",
+    "safe_handled": false,
+    "success": false,
+    "failure_reason": "COLLISION_LETHAL_OBSTACLE",
+    "collision_count": 1,
+    "min_clearance_m": 10.0,
+    "ate_rmse_m": 0.0,
+    "planning_latency_ms": 13.14
+  }
+}

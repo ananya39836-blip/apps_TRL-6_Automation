@@ -1,0 +1,262 @@
+{
+  "SC-01_flat_baseline": {
+    "total_runs": 1,
+    "success_count": 1,
+    "success_rate_pct": 100.0,
+    "wilson_ci_95": [
+      20.7,
+      100.0
+    ],
+    "total_collisions": 0,
+    "mean_ate_rmse_m": 0.0605,
+    "mean_planning_latency_ms": 15.96,
+    "mean_min_clearance_m": 2.408
+  },
+  "SC-02_moderate_slopes": {
+    "total_runs": 1,
+    "success_count": 0,
+    "success_rate_pct": 0.0,
+    "wilson_ci_95": [
+      0.0,
+      79.3
+    ],
+    "total_collisions": 0,
+    "mean_ate_rmse_m": 0.0,
+    "mean_planning_latency_ms": 0.24,
+    "mean_min_clearance_m": 3.105
+  },
+  "SC-03_steep_slopes": {
+    "total_runs": 1,
+    "success_count": 0,
+    "success_rate_pct": 0.0,
+    "wilson_ci_95": [
+      0.0,
+      79.3
+    ],
+    "total_collisions": 1,
+    "mean_ate_rmse_m": 0.0,
+    "mean_planning_latency_ms": 0.22,
+    "mean_min_clearance_m": 1.4
+  },
+  "SC-04_dense_obstacle_field": {
+    "total_runs": 1,
+    "success_count": 1,
+    "success_rate_pct": 100.0,
+    "wilson_ci_95": [
+      20.7,
+      100.0
+    ],
+    "total_collisions": 0,
+    "mean_ate_rmse_m": 0.0536,
+    "mean_planning_latency_ms": 11.23,
+    "mean_min_clearance_m": 10.0
+  },
+  "SC-05_narrow_passages": {
+    "total_runs": 1,
+    "success_count": 1,
+    "success_rate_pct": 100.0,
+    "wilson_ci_95": [
+      20.7,
+      100.0
+    ],
+    "total_collisions": 0,
+    "mean_ate_rmse_m": 0.0504,
+    "mean_planning_latency_ms": 21.3,
+    "mean_min_clearance_m": 2.433
+  },
+  "SC-06_crater_avoidance": {
+    "total_runs": 1,
+    "success_count": 1,
+    "success_rate_pct": 100.0,
+    "wilson_ci_95": [
+      20.7,
+      100.0
+    ],
+    "total_collisions": 0,
+    "mean_ate_rmse_m": 0.0515,
+    "mean_planning_latency_ms": 9.55,
+    "mean_min_clearance_m": 10.0
+  },
+  "SC-07_sensor_noise": {
+    "total_runs": 1,
+    "success_count": 1,
+    "success_rate_pct": 100.0,
+    "wilson_ci_95": [
+      20.7,
+      100.0
+    ],
+    "total_collisions": 0,
+    "mean_ate_rmse_m": 0.1256,
+    "mean_planning_latency_ms": 11.3,
+    "mean_min_clearance_m": 2.433
+  },
+  "SC-08_sensor_dropout": {
+    "total_runs": 1,
+    "success_count": 1,
+    "success_rate_pct": 100.0,
+    "wilson_ci_95": [
+      20.7,
+      100.0
+    ],
+    "total_collisions": 0,
+    "mean_ate_rmse_m": 0.0564,
+    "mean_planning_latency_ms": 10.06,
+    "mean_min_clearance_m": 2.433
+  },
+  "SC-09_localization_drift": {
+    "total_runs": 1,
+    "success_count": 1,
+    "success_rate_pct": 100.0,
+    "wilson_ci_95": [
+      20.7,
+      100.0
+    ],
+    "total_collisions": 0,
+    "mean_ate_rmse_m": 0.0584,
+    "mean_planning_latency_ms": 11.45,
+    "mean_min_clearance_m": 5.463
+  },
+  "SC-10_wheel_slip_disturbance": {
+    "total_runs": 1,
+    "success_count": 1,
+    "success_rate_pct": 100.0,
+    "wilson_ci_95": [
+      20.7,
+      100.0
+    ],
+    "total_collisions": 0,
+    "mean_ate_rmse_m": 0.0515,
+    "mean_planning_latency_ms": 13.45,
+    "mean_min_clearance_m": 10.0
+  },
+  "SC-11_unexpected_obstacles": {
+    "total_runs": 1,
+    "success_count": 1,
+    "success_rate_pct": 100.0,
+    "wilson_ci_95": [
+      20.7,
+      100.0
+    ],
+    "total_collisions": 0,
+    "mean_ate_rmse_m": 0.0515,
+    "mean_planning_latency_ms": 10.66,
+    "mean_min_clearance_m": 10.0
+  },
+  "SC-12_completely_blocked": {
+    "total_runs": 1,
+    "success_count": 1,
+    "success_rate_pct": 100.0,
+    "wilson_ci_95": [
+      20.7,
+      100.0
+    ],
+    "total_collisions": 0,
+    "mean_ate_rmse_m": 0.0505,
+    "mean_planning_latency_ms": 9.75,
+    "mean_min_clearance_m": 2.631
+  },
+  "SC-13_low_traction_regolith": {
+    "total_runs": 1,
+    "success_count": 1,
+    "success_rate_pct": 100.0,
+    "wilson_ci_95": [
+      20.7,
+      100.0
+    ],
+    "total_collisions": 0,
+    "mean_ate_rmse_m": 0.0442,
+    "mean_planning_latency_ms": 25.29,
+    "mean_min_clearance_m": 5.841
+  },
+  "SC-14_environmental_replan": {
+    "total_runs": 1,
+    "success_count": 1,
+    "success_rate_pct": 100.0,
+    "wilson_ci_95": [
+      20.7,
+      100.0
+    ],
+    "total_collisions": 0,
+    "mean_ate_rmse_m": 0.0073,
+    "mean_planning_latency_ms": 19.27,
+    "mean_min_clearance_m": 2.912
+  },
+  "SC-15_critical_fault_safestop": {
+    "total_runs": 1,
+    "success_count": 1,
+    "success_rate_pct": 100.0,
+    "wilson_ci_95": [
+      20.7,
+      100.0
+    ],
+    "total_collisions": 0,
+    "mean_ate_rmse_m": 0.0416,
+    "mean_planning_latency_ms": 9.29,
+    "mean_min_clearance_m": 10.0
+  },
+  "SC-16_extended_horizon_traverse": {
+    "total_runs": 1,
+    "success_count": 1,
+    "success_rate_pct": 100.0,
+    "wilson_ci_95": [
+      20.7,
+      100.0
+    ],
+    "total_collisions": 0,
+    "mean_ate_rmse_m": 0.0356,
+    "mean_planning_latency_ms": 21.43,
+    "mean_min_clearance_m": 10.0
+  },
+  "SC-17_unreachable_goal_recovery": {
+    "total_runs": 1,
+    "success_count": 1,
+    "success_rate_pct": 100.0,
+    "wilson_ci_95": [
+      20.7,
+      100.0
+    ],
+    "total_collisions": 0,
+    "mean_ate_rmse_m": 0.0465,
+    "mean_planning_latency_ms": 9.7,
+    "mean_min_clearance_m": 10.0
+  },
+  "SC-18_communication_latency_jitter": {
+    "total_runs": 1,
+    "success_count": 1,
+    "success_rate_pct": 100.0,
+    "wilson_ci_95": [
+      20.7,
+      100.0
+    ],
+    "total_collisions": 0,
+    "mean_ate_rmse_m": 0.0807,
+    "mean_planning_latency_ms": 14.51,
+    "mean_min_clearance_m": 10.0
+  },
+  "SC-19_transient_sensor_glitch": {
+    "total_runs": 1,
+    "success_count": 1,
+    "success_rate_pct": 100.0,
+    "wilson_ci_95": [
+      20.7,
+      100.0
+    ],
+    "total_collisions": 0,
+    "mean_ate_rmse_m": 0.0407,
+    "mean_planning_latency_ms": 10.79,
+    "mean_min_clearance_m": 2.53
+  },
+  "SC-20_combined_multihazard_stress": {
+    "total_runs": 1,
+    "success_count": 0,
+    "success_rate_pct": 0.0,
+    "wilson_ci_95": [
+      0.0,
+      79.3
+    ],
+    "total_collisions": 0,
+    "mean_ate_rmse_m": 0.0,
+    "mean_planning_latency_ms": 0.3,
+    "mean_min_clearance_m": 2.408
+  }
+}

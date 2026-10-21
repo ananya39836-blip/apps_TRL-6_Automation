@@ -21,16 +21,17 @@ class PlanetaryTerrain:
         base_slope_deg: float = 0.0,
         undulation_amplitude_m: float = 0.5,
         undulation_wavelength_m: float = 15.0,
-        seed: int = 42
+        seed: int = 42,
+        **kwargs
     ) -> None:
         self.size_x = float(size_x_m)
         self.size_y = float(size_y_m)
         self.res = float(resolution_m)
         self.nx = int(round(self.size_x / self.res))
         self.ny = int(round(self.size_y / self.res))
-        self.base_slope_deg = float(base_slope_deg)
-        self.amplitude = float(undulation_amplitude_m)
-        self.wavelength = float(undulation_wavelength_m)
+        self.base_slope_deg = float(kwargs.get("base_slope", base_slope_deg))
+        self.amplitude = float(kwargs.get("undulation_amp", undulation_amplitude_m))
+        self.wavelength = float(kwargs.get("undulation_wave", undulation_wavelength_m))
         self.seed = int(seed)
         self.rng = np.random.default_rng(self.seed)
 
