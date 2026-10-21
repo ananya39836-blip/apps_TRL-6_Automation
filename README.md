@@ -1,24 +1,60 @@
-# apps_level2_3_4_3D_Prototype: Automated Planetary Perception System (APPS) — Level 2 to 7 Planetary-Scale Autonomy, Relativistic Navigation & NASA/ESA TRL 4 GNC Core
+# APPS NASA TRL-6 Planetary Rover Autonomous Navigation & V&V System
 
-> **Scientific Integrity & Academic Research Disclaimer**:  
-> This repository contains the Level 2, Level 3, Level 4, Level 5, Level 6, and Level 7 research prototype of the **Automated Planetary Perception System (APPS)** alongside a strict **NASA/ESA TRL 4 (Breadboard & Synthetic Laboratory Validation)** GNC core module (`gnc_core/`).  
-> Evaluated on continuous 3D digital elevation models (DEM), 6-DOF multibody dynamics, Bekker-Wong terramechanics, multi-modal active sensing, kilometer-scale hierarchical navigation, heterogeneous multi-agent autonomy, AEGIS opportunistic science, neuromorphic edge computing, decentralized swarm consensus, subterranean lava tube 3D LiDAR SLAM, ocean worlds cryobots, astrobiology biosignature detection, Category V planetary protection, interplanetary relativistic navigation (1PN Einstein-Infeld-Hoffmann, Shapiro delay, pulsar XNAV), closed-loop aerocapture, lunar south pole 40 K PSR cryogenic mining, 1.2 MW Stirling fission microgrid, Titan cryogenic hydrocarbon submersibles, kilometer-depth coiled tubing drilling rigs, Venus 465°C / 92 bar supercritical avionics with 500°C 4H-SiC logic, asteroid kinetic deflection, living bacterial biosensors, continuous-variable quantum key distribution (CV-QKD), Bell polarization entanglement (CHSH S > 2.0), Von Neumann kinematic self-replication closure (> 0.95), relativistic interstellar probes (0.2c Lorentz boost, laser lightsails), solar gravitational lens (SGL 550–650 AU) exoplanet multipixel imaging, Dyson swarm megastructure constellations (solar statites & coherent laser power beaming), sub-Kelvin superconducting quantum avionics (RSFQ Josephson processors & 50 mK dilution refrigerators), and autonomous planetary geoengineering (artificial magnetosphere L1 dipoles & solar sublimation mirrors).  
-> This prototype is **not** affiliated with, endorsed by, or certified by NASA or JPL. It is not qualified for spaceflight.  
-> Under `PROTOTYPE_LOCK = True`, `navigation_ready` is held strictly `False`.  
-> Milestone status: **`L2-met`**, **`L3-met`**, **`L4-met`**, **`L5-met`**, **`L6-met`**, & **`L7-met (internal)`** (mechanically computed via assessment engines).
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://appstrl-5automation-bvnprkgm5jxbm2sh7r9w4c.streamlit.app/)
+[![License](https://github.com/ananya39836-blip/apps_TRL-6_Automation/blob/main/LICENSE
+)](LICENSE)
+apps_TRL-6_Automation/
+└── docs/
+    └── assets/
+        ├── dashboard_overview.png   <-- Image 4 (Mission & Scenario Config / System Status)
+        ├── dem_surface.png          <-- Image 1 (3D DEM & Surface Topography)
+        ├── sensor_telemetry.png     <-- Image 3 (Multi-Sensor Rig & LiDAR Scan)
+        └── hil_telemetry.png        <-- Image 2 (HIL CCSDS Space Packet Streamer)
+        
+An interactive mission control, verification, and validation (V&V) telemetry suite designed for planetary rover autonomy qualification under NASA TRL-6 guidelines (system/subsystem model or prototype demonstration in a relevant operational environment).
 
 ---
 
-## 🛰️ NASA / ESA TRL 4 GNC Core (`gnc_core/`)
+## Key Capabilities
 
-The core algorithmic pipelines have been systematically refactored into a standalone, pure C-compatible / Numba-optimized backend module (`gnc_core/`) meeting strict **NASA/ESA TRL 4 (Breadboard & Synthetic Laboratory Validation)** criteria:
+- **3D Digital Elevation Model (DEM) & Trajectory Telemetry:** Real-time visual comparison and residual tracking across Ground Truth (GT), Extended Kalman Filter (EKF), and Planned paths.
+- **Multi-Sensor Fusion Rig:** Ingestion and simulated processing of 3D LiDAR point clouds, stereo RGB-D cameras, tactical-grade IMU, and high-resolution wheel odometry.
+- **2.5D Elevation & Traversability Mapping:** Real-time slope, roughness, and step-hazard cost map generation for multi-criteria safety evaluation.
+- **15-Scenario Multi-Seed Verification Suite:** Monte Carlo mission validation utilizing Wilson score confidence intervals for statistical reliability scoring.
+- **Comparative Baseline & Ablation Benchmarking:** Automated evaluation of perception sub-modules against baseline sensor suites.
+- **11-Mode Discrete FDIR State Machine:** Fault Detection, Isolation, and Recovery monitoring with hard safety interlocks, anomaly injection, and automated emergency safing routines.
 
-```mermaid
-flowchart LR
-    subgraph PhysicsBackend ["Decoupled Pure Physics (gnc_core/physics/)"]
-        EIH["1PN Relativistic Orbit Propagator\n(Einstein-Infeld-Hoffmann RK4)"]
-        Shapiro["Gravitational Shapiro Delay\n(Logarithmic Metric Curvature)"]
-        Aero["Predictor-Corrector Aerocapture\n(GRAM 3-σ Density Corridor)"]
+---
+
+## System Architecture
+
+```text
++-------------------------------------------------------------------------+
+|                        Planetary Terrain & Sensors                      |
+|       (3D LiDAR, RGB-D Camera, Tactical IMU, Wheel Odometry)            |
++------------------------------------+------------------------------------+
+                                     |
+                                     v
++-------------------------------------------------------------------------+
+|                  Perception & State Estimation Engine                   |
+|   - 2.5D Elevation / Multi-Criteria Traversability Cost Mapping         |
+|   - Multi-Sensor EKF Fusion (GT vs. EKF State Residuals)                |
++------------------------------------+------------------------------------+
+                                     |
+                                     v
++------------------------------------+------------------------------------+
+|               Trajectory Planning & Safety Interlocks                   |
+|   - Path Generation & Dynamic Re-planning                               |
+|   - 11-Mode Discrete FDIR (Fault Detection, Isolation & Recovery)       |
++------------------------------------+------------------------------------+
+                                     |
+                                     v
++-------------------------------------------------------------------------+
+|             TRL-6 Interactive Mission Control & V&V Suite               |
+|   - Streamlit + Plotly 3D/2.5D Subplot Visualization                    |
+|   - Multi-Seed Statistical Scoring (Wilson Score Confidence Intervals)  |
++-------------------------------------------------------------------------+
+
     end
 
     subgraph RealTimeRTOS ["Deterministic Real-Time RTOS Loop (gnc_core/realtime/)"]
@@ -71,7 +107,7 @@ flowchart LR
 ![apps_level2_proto Demo Overview](docs/images/demo_overview.png)
 
 ### 🚀 Streamlit Cloud Deployment
-- **Live Streamlit App**: [Launch on Streamlit Cloud](https://share.streamlit.io/) (configured for repository `ananya39836-blip/apps_level2_3_4_3D_Prototype`)
+- **Live Streamlit App**: [Launch on Streamlit Cloud](https://appstrl-5automation-bvnprkgm5jxbm2sh7r9w4c.streamlit.app/) (configured for repository `ananya39836-blip/apps_level2_3_4_3D_Prototype`)
 - **Direct App Link**: `https://ananya39836-blip-apps-level2-3-4-3d-prototype.streamlit.app`
 - **Main App Files**:
   - `apps_level6_proto.py`: **Level 6 Planetary-Scale Systems & Relativistic Autonomy**: Interplanetary 1PN relativistic cruise & autonomous closed-loop aerocapture corridor, lunar south pole 40 K PSR cryogenic water-ice auger mining & 1.2 MW Stirling fission microgrid, Titan Kraken Mare cryogenic hydrocarbon submarine & dense nitrogen flight, kilometer-depth continuous coiled tubing drilling rig & acoustic mud pulse telemetry, Venus 465°C / 92 bar supercritical avionics & 500°C 4H-SiC logic, Didymos-Dimorphos asteroid binary tracking & 6.5 km/s kinetic deflection, continuous-variable QKD secret key sifting, polarization-entangled Bell pairs (CHSH S = 2.81 > 2.0), Von Neumann kinematic self-replication closure (> 0.95), vacuum selective laser melting (SLM) metal 3D printing, and COSPAR Category V 650°C vacuum induction braze biobarrier containment ledger.
@@ -502,6 +538,8 @@ apps_level2_3_4_3D_Prototype/
     ├── level3/                  # Sealed Level 3 experiment logs and manifest (SHA-256)
     └── level2/                  # Sealed Level 2 experiment logs and manifest (SHA-256)
 ```
-#   a p p s _ T R L - 5 _ A u t o m a t i o n  
- #   a p p s _ T R L - 5 _ A u t o m a t i o n  
+#   a p p s _ T R L - 5 _ A u t o m a t i o n 
+ 
+ #   a p p s _ T R L - 5 _ A u t o m a t i o n 
+ 
  
