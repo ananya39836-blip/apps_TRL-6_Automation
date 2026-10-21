@@ -20,7 +20,7 @@ class MissionStateMachine:
         OperatingState.IDLE: {OperatingState.PERCEPTION, OperatingState.SAFE_STOP, OperatingState.FAULT},
         OperatingState.PERCEPTION: {OperatingState.LOCALIZATION, OperatingState.SAFE_STOP, OperatingState.FAULT},
         OperatingState.LOCALIZATION: {OperatingState.PLANNING, OperatingState.SAFE_STOP, OperatingState.FAULT},
-        OperatingState.PLANNING: {OperatingState.EXECUTION, OperatingState.REPLANNING, OperatingState.SAFE_STOP, OperatingState.FAULT},
+        OperatingState.PLANNING: {OperatingState.EXECUTION, OperatingState.REPLANNING, OperatingState.SAFE_STOP, OperatingState.MISSION_COMPLETE, OperatingState.FAULT},
         OperatingState.EXECUTION: {
             OperatingState.PERCEPTION,
             OperatingState.REPLANNING,
@@ -28,7 +28,7 @@ class MissionStateMachine:
             OperatingState.MISSION_COMPLETE,
             OperatingState.FAULT,
         },
-        OperatingState.REPLANNING: {OperatingState.PLANNING, OperatingState.RECOVERY, OperatingState.SAFE_STOP, OperatingState.FAULT},
+        OperatingState.REPLANNING: {OperatingState.PLANNING, OperatingState.EXECUTION, OperatingState.RECOVERY, OperatingState.SAFE_STOP, OperatingState.MISSION_COMPLETE, OperatingState.FAULT},
         OperatingState.RECOVERY: {OperatingState.PERCEPTION, OperatingState.SAFE_STOP, OperatingState.FAULT},
         OperatingState.SAFE_STOP: {OperatingState.IDLE, OperatingState.MISSION_ABORT, OperatingState.FAULT},
         OperatingState.MISSION_COMPLETE: {OperatingState.IDLE},

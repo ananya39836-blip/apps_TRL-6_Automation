@@ -23,7 +23,7 @@ class ScenarioGenerator:
         size_x = 60.0
         size_y = 60.0
         res = 0.20
-        base_slope = 0.0
+        base_slope_deg = 0.0
         undulation_amp = 0.4
         undulation_wave = 15.0
 
@@ -43,12 +43,12 @@ class ScenarioGenerator:
 
         if scenario_id == "SC-01_flat_baseline":
             undulation_amp = 0.1
-            base_slope = 0.0
+            base_slope_deg = 0.0
 
         elif scenario_id == "SC-02_moderate_slopes":
-            base_slope = 8.0
+            base_slope_deg = 8.0
             undulation_amp = 0.8
-            terrain = PlanetaryTerrain(size_x, size_y, res, base_slope, undulation_amp, undulation_wave, seed)
+            terrain = PlanetaryTerrain(size_x, size_y, res, base_slope_deg, undulation_amp, undulation_wave, seed)
             for _ in range(10):
                 rx = float(rng.uniform(10.0, 40.0))
                 ry = float(rng.uniform(10.0, 40.0))

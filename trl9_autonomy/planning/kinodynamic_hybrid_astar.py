@@ -50,7 +50,7 @@ class KinodynamicHybridAStar:
         num_steer_angles: int = 5,
         xy_resolution_m: float = 0.40,
         yaw_resolution_rad: float = math.radians(15.0),
-        timeout_s: float = 0.080,
+        timeout_s: float = 0.350,
     ) -> None:
         self.max_curvature = max_curvature_inv_m
         self.step_size = step_size_m
@@ -103,7 +103,7 @@ class KinodynamicHybridAStar:
         min_dist_to_goal = self.heuristic(sx, sy, gx, gy)
 
         goal_tolerance_m = 1.0
-        max_expansions = 1500
+        max_expansions = 3500
         expansions = 0
 
         while open_set and expansions < max_expansions:
@@ -123,7 +123,7 @@ class KinodynamicHybridAStar:
                 return self._reconstruct_path(current)
 
             # Try direct analytic expansion if close to goal
-            if dist_to_goal <= 8.0:
+            if dist_to_goal <= 14.0:
                 analytic_path = self._try_analytic_expansion(
                     current, gx, gy, gyaw, impassable_mask, res
                 )
@@ -211,7 +211,7 @@ class KinodynamicHybridAStar:
 
         # Heading difference check
         head_diff = abs((heading - node.yaw + math.pi) % (2.0 * math.pi) - math.pi)
-        if head_diff > math.radians(35.0):
+        if head_diff > math.radians(50.0):
             return None  # Angle too sharp for smooth connection
 
         # Check collision along sampled line

@@ -1,0 +1,18 @@
+{
+  "campaign_timestamp": "2026-10-21 11:05:04 UTC",
+  "total_scenarios": 20,
+  "total_successes": 12,
+  "success_rate": 0.6,
+  "wilson_ci_95": {
+    "lower": 0.3865818944494568,
+    "upper": 0.7811931838533348
+  },
+  "total_collisions": 0,
+  "mean_traverse_distance_m": 22.61049270447434,
+  "mean_ate_rmse_m": 0.07855336093865715,
+  "max_ate_rmse_m": 0.4004418070976044,
+  "mean_cycle_latency_ms": 82.67042380734284,
+  "mean_planning_latency_ms": 349.8368999997183,
+  "total_campaign_duration_s": 926.3182170391083,
+  "software_version": "4.0.0-trl9"
+}
