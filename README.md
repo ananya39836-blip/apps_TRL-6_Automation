@@ -1,6 +1,6 @@
 # APPS NASA TRL-6 Planetary Rover Autonomous Navigation & V&V System
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://appstrl-5automation-bvnprkgm5jxbm2sh7r9w4c.streamlit.app/)
+[![Streamlit App](https://appstrl-5automation-bvnprkgm5jxbm2sh7r9w4c.streamlit.app/)
 [![License](https://github.com/ananya39836-blip/apps_TRL-6_Automation/blob/main/LICENSE
 )](LICENSE)
 [Visualization(1)](https://github.com/user-attachments/assets/8448cd15-a323-4a89-8f1c-d544588be1b0)
