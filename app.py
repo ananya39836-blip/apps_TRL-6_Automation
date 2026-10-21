@@ -12,8 +12,10 @@ import matplotlib.pyplot as plt
 from PIL import Image
 import apps01 as A
 
-st.set_page_config(page_title="APPS-0.1 Mars Perception", layout="wide")
-st.title("APPS-0.1 — Automated Planetary Perception System")
+st.set_page_config(page_title="APPS — Automated Planetary Perception System", layout="wide", page_icon="🪐")
+st.title("🪐 APPS — Automated Planetary Perception System")
+st.sidebar.markdown("### 🧭 Navigation & Subsystems")
+st.sidebar.info("💡 **Select any TRL tier or Research Level from the Pages menu above!**")
 st.warning("Research prototype trained on SYNTHETIC terrain only. No claims about real Mars performance, minerals, or safe driving.")
 
 
