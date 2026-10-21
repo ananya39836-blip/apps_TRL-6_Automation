@@ -78,3 +78,21 @@ class SpacecraftLiDARVisionSensor:
 
         # Return delayed measurement from front of queue
         return self.buffer.popleft()
+
+    def sample_range(self, true_range_m: float) -> Dict[str, Any]:
+        """Convenience method returning immediate simulated range reading."""
+        r = max(0.1, float(true_range_m))
+        sigma_r = self.sigma_0 * ((r / self.r_0) ** 2)
+        noise = float(self.rng.normal(0, sigma_r))
+        is_dropout = bool(self.rng.uniform(0.0, 1.0) < self.p_dropout)
+        meas_r = 0.0 if is_dropout else max(0.0, r + noise)
+        return {
+            "range_m": meas_r if not is_dropout else None,
+            "measured_range_m": meas_r,
+            "status": "DROPOUT_DETECTED" if is_dropout else "VALID_RETURN",
+            "valid": not is_dropout,
+            "dropout": is_dropout,
+            "sigma_m": sigma_r,
+            "noise_sigma_m": sigma_r,
+            "latency_s": self.latency_steps * 0.01,
+        }

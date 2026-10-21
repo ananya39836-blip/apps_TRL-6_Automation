@@ -106,11 +106,29 @@ class SpaceborneXNAVReceiver:
 
         return {
             "pulsar_name": pulsar_name,
+            "pulsar_id": pulsar_name,
             "photons_counted": measured_photons,
+            "photons_detected": measured_photons,
             "true_range_m": true_proj_range_m,
             "measured_range_m": float(measured_range_m),
             "range_error_m": float(measured_range_m - true_proj_range_m),
             "measured_phase": float(measured_phase),
             "shapiro_delay_ns": float(shapiro_delay_s * 1e9),
             "clock_drift_ns": float(clock_drift_s * 1e9),
+            "detector_jitter_ns": float(abs(phase_jitter_s) * 1e9),
+            "clock_drift_fraction": float(self.clock_drift_rate),
         }
+
+    def sample_arrival(
+        self,
+        true_pos_m: np.ndarray,
+        pulsar_name: str = "PSR_B1937+21",
+        integration_time_s: float = 0.01,
+        mission_elapsed_s: float = 0.0
+    ) -> Dict[str, Any]:
+        """Convenience method for TOA photon arrival sampling."""
+        return self.simulate_observation(true_pos_m, pulsar_name, integration_time_s, mission_elapsed_s)
+
+
+# Export canonical alias
+XNAVMillisecondPulsarReceiver = SpaceborneXNAVReceiver

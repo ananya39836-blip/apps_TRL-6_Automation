@@ -66,6 +66,10 @@ class RelativisticOrbitPropagator:
         self.mu = float(mu_central)
         self.dt = float(dt_step_s)
 
+    def compute_1pn_acceleration(self, pos_m: np.ndarray, vel_mps: np.ndarray) -> np.ndarray:
+        """Computes relativistic 1PN acceleration at current state."""
+        return compute_1pn_acceleration(pos_m, vel_mps, self.mu)
+
     def step_rk4(
         self,
         pos_m: np.ndarray,

@@ -105,6 +105,12 @@ class SpaceGradeIMU:
             "meas_accel_mps2": accel_clipped,
             "gyro_bias_rps": self.gyro_bias.copy(),
             "accel_bias_mps2": self.accel_bias.copy(),
+            "bias_gyro_rps": self.gyro_bias.copy(),
+            "bias_accel_mps2": self.accel_bias.copy(),
             "is_gyro_saturated": is_gyro_saturated,
             "is_accel_saturated": is_accel_saturated,
+            "clipped": is_gyro_saturated or is_accel_saturated,
         }
+
+    # Alias for sample method
+    sample = step
