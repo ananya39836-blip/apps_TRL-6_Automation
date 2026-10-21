@@ -1,22 +1,32 @@
-# APPS NASA TRL-6 Planetary Rover Autonomous Navigation & V&V System
+# APPS — Automated Planetary Perception & Autonomous Navigation System
 
-[![Streamlit App](https://appstrl-5automation-bvnprkgm5jxbm2sh7r9w4c.streamlit.app/)
-[![License](https://github.com/ananya39836-blip/apps_TRL-6_Automation/blob/main/LICENSE
-)](LICENSE)
-[Visualization(1)](https://github.com/user-attachments/assets/8448cd15-a323-4a89-8f1c-d544588be1b0)
-[Visualization(2)](https://github.com/user-attachments/assets/d5065bfd-90b5-48fd-a835-884e3c54273b)
-[Visualization(3)](https://github.com/user-attachments/assets/cba90cf5-80d7-47f5-a1ed-acaf794134de)
-[Visualization(4)](https://github.com/user-attachments/assets/e76c0bd9-a639-4c48-b319-f6f96d7d1ef8)
-https://github.com/user-attachments/assets/e76c0bd9-a639-4c48-b319-f6f96d7d1ef8h
-apps_TRL-6_Automation/
-└── docs/
-    └── assets/
-        ├── dashboard_overview.png   <-- Image 4 (Mission & Scenario Config / System Status)
-        ├── dem_surface.png          <-- Image 1 (3D DEM & Surface Topography)
-        ├── sensor_telemetry.png     <-- Image 3 (Multi-Sensor Rig & LiDAR Scan)
-        └── hil_telemetry.png        <-- Image 2 (HIL CCSDS Space Packet Streamer)
-        
-An interactive mission control, verification, and validation (V&V) telemetry suite designed for planetary rover autonomy qualification under NASA TRL-6 guidelines (system/subsystem model or prototype demonstration in a relevant operational environment).
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://ananya39836-blip-apps-level-3d-prototype-app-5wdpli.streamlit.app/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Tests Passing](https://img.shields.io/badge/Tests-268%2F268%20Passed-brightgreen)](tests/)
+[![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
+
+> **🌐 Live Operational Streamlit Deployment:**  
+> **Main Portal:** [https://ananya39836-blip-apps-level-3d-prototype-app-5wdpli.streamlit.app/](https://ananya39836-blip-apps-level-3d-prototype-app-5wdpli.streamlit.app/)  
+> **Level 2 3D Terrain Perception:** [https://ananya39836-blip-apps-level-3d-prototype-app-5wdpli.streamlit.app/Level_2_Terrain_3D](https://ananya39836-blip-apps-level-3d-prototype-app-5wdpli.streamlit.app/Level_2_Terrain_3D)
+
+---
+
+### 🚀 Live Interactive Modules & Multi-Page Navigation
+
+All research tiers and NASA TRL progression dashboards are accessible via the live deployed multi-page application:
+
+| Research Tier / Subsystem | Description & Key Capabilities | Direct Live Streamlit Link |
+| :--- | :--- | :--- |
+| **🏔️ Level 2** | **3D Planetary Terrain Perception & DEM Simulation** | [**Open Level 2 Interactive Dashboard**](https://ananya39836-blip-apps-level-3d-prototype-app-5wdpli.streamlit.app/Level_2_Terrain_3D) |
+| **🚀 NASA TRL 9** | **Operational-System Readiness & Flight Qualification Framework** | [**Open TRL 9 Qualification Dashboard**](https://ananya39836-blip-apps-level-3d-prototype-app-5wdpli.streamlit.app/TRL_9_Autonomy) |
+| **🪐 NASA TRL 6** | **Integrated Autonomous Rover Prototype & V&V Campaign** | [**Open TRL 6 Autonomous Rover Dashboard**](https://ananya39836-blip-apps-level-3d-prototype-app-5wdpli.streamlit.app/TRL_6_Integrated_Rover) |
+| **🛰️ NASA TRL 7** | **Operational Environment Demonstration & FDIR Verification** | [**Open TRL 7 Demonstration Dashboard**](https://ananya39836-blip-apps-level-3d-prototype-app-5wdpli.streamlit.app/TRL_7_Operational_Demo) |
+| **🔬 NASA TRL 5** | **Closed-Loop Planetary Navigation & Baseline Benchmarks** | [**Open TRL 5 Validation Dashboard**](https://ananya39836-blip-apps-level-3d-prototype-app-5wdpli.streamlit.app/TRL_5_Validation_Campaign) |
+| **📡 Level 6** | **Interplanetary Navigation & Extreme Martian Topography** | [**Open Level 6 Exploration Dashboard**](https://ananya39836-blip-apps-level-3d-prototype-app-5wdpli.streamlit.app/Level_6_Interplanetary) |
+| **🤖 Level 5** | **Multi-Rover Swarm Coordination & Cooperative Exploration** | [**Open Level 5 Swarm Dashboard**](https://ananya39836-blip-apps-level-3d-prototype-app-5wdpli.streamlit.app/Level_5_Multi_Rover) |
+| **🛸 Level 4** | **Cooperative Sensing & Aerial Scout Helicopter Integration** | [**Open Level 4 Aerial Scout Dashboard**](https://ananya39836-blip-apps-level-3d-prototype-app-5wdpli.streamlit.app/Level_4_Cooperative_Sensing) |
+| **🏎️ Level 3** | **Rover Dynamics, Terramechanics & Kinodynamic Path Planning** | [**Open Level 3 Kinodynamics Dashboard**](https://ananya39836-blip-apps-level-3d-prototype-app-5wdpli.streamlit.app/Level_3_Kinodynamics) |
+| **📷 Level 1** | **Baseline Perception, Synthetic Scene Generator & Uncertainty** | [**Open Level 1 Master App**](https://ananya39836-blip-apps-level-3d-prototype-app-5wdpli.streamlit.app/) |
 
 ---
 
@@ -543,8 +553,8 @@ apps_level2_3_4_3D_Prototype/
     ├── level3/                  # Sealed Level 3 experiment logs and manifest (SHA-256)
     └── level2/                  # Sealed Level 2 experiment logs and manifest (SHA-256)
 ```
-#   a p p s _ T R L - 5 _ A u t o m a t i o n 
- 
- #   a p p s _ T R L - 5 _ A u t o m a t i o n 
- 
- 
+# apps_TRL-5_Automation
+
+# apps_TRL-5_Automation
+
+
