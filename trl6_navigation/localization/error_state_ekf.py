@@ -45,7 +45,7 @@ class ErrorStateEKF:
         self.q_gbias = 0.00005
 
         # Measurement noise covariance R (wheel odometry: [v_lin, w_yaw])
-        self.R_odom = np.diag([0.04, 0.01])
+        self.R_odom = np.diag([0.002, 0.002])
 
     def predict(self, gyro_z_rps: float, accel_x_mps2: float, dt_s: float = 0.01) -> None:
         """High-rate prediction step propagating nominal state and error covariance."""

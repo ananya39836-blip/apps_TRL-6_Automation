@@ -1,0 +1,23 @@
+{
+  "scenario": "SC-01",
+  "proposed_kinodynamic": {
+    "success": true,
+    "ate_rmse_m": 0.04690846665905152,
+    "collision_count": 0,
+    "distance_m": 23.586809416458436,
+    "duration_s": 60.900000000000595,
+    "planning_latency_ms": 270.0154000049224,
+    "curvature_compliant": true
+  },
+  "baseline_pure_odometry": {
+    "drift_error_m": 7.189,
+    "sensor_fusion": false,
+    "drift_increase_factor": 153.3
+  },
+  "baseline_geometric_grid_astar": {
+    "path_waypoints": 86,
+    "kinodynamic_constraints": false,
+    "curvature_violations": 0,
+    "footprint_obb_checked": false
+  }
+}

@@ -29,6 +29,12 @@ class CollisionChecker:
         self.eff_half_len = (self.length / 2.0) + self.margin
         self.eff_half_wid = (self.width / 2.0) + self.margin
 
+        # Precompute dense local sampling grid for fast vectorized collision checking
+        dl = np.linspace(-self.eff_half_len, self.eff_half_len, 25)
+        dw = np.linspace(-self.eff_half_wid, self.eff_half_wid, 21)
+        L, W = np.meshgrid(dl, dw, indexing="ij")
+        self.local_samples = np.column_stack([L.ravel(), W.ravel()])
+
     def get_chassis_corners_world(self, x: float, y: float, yaw: float) -> np.ndarray:
         """Computes the 4 corners of the oriented rover chassis in world coordinates."""
         cos_y = math.cos(yaw)
@@ -69,25 +75,17 @@ class CollisionChecker:
         else:
             return False
 
-        # 2. Sample points across the interior of the oriented footprint (ensuring center and boundary are checked)
-        num_len_samples = max(5, int(self.eff_half_len * 2.0 / resolution_m) | 1)
-        num_wid_samples = max(5, int(self.eff_half_wid * 2.0 / resolution_m) | 1)
+        # 2. Vectorized check across oriented footprint interior
+        px = x + (self.local_samples[:, 0] * cos_y - self.local_samples[:, 1] * sin_y)
+        py = y + (self.local_samples[:, 0] * sin_y + self.local_samples[:, 1] * cos_y)
 
-        dl = np.linspace(-self.eff_half_len, self.eff_half_len, num_len_samples)
-        dw = np.linspace(-self.eff_half_wid, self.eff_half_wid, num_wid_samples)
+        ix = np.round(px / resolution_m).astype(np.int64)
+        iy = np.round(py / resolution_m).astype(np.int64)
 
-        for l_off in dl:
-            for w_off in dw:
-                px = x + (l_off * cos_y - w_off * sin_y)
-                py = y + (l_off * sin_y + w_off * cos_y)
+        if np.any((ix < 0) | (ix >= nx) | (iy < 0) | (iy >= ny)):
+            return False
 
-                ix = int(round(px / resolution_m))
-                iy = int(round(py / resolution_m))
-
-                if 0 <= ix < nx and 0 <= iy < ny:
-                    if cost_map[ix, iy] >= cost_threshold:
-                        return False
-                else:
-                    return False
+        if np.any(cost_map[ix, iy] >= cost_threshold):
+            return False
 
         return True

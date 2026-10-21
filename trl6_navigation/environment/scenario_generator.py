@@ -23,7 +23,7 @@ class ScenarioGenerator:
         size_x = 60.0
         size_y = 60.0
         res = 0.20
-        base_slope = 0.0
+        base_slope_deg = 0.0
         undulation_amp = 0.4
         undulation_wave = 15.0
 
@@ -43,12 +43,12 @@ class ScenarioGenerator:
 
         if scenario_id == "SC-01_flat_baseline":
             undulation_amp = 0.1
-            base_slope = 0.0
+            base_slope_deg = 0.0
 
         elif scenario_id == "SC-02_moderate_slopes":
-            base_slope = 8.0
+            base_slope_deg = 8.0
             undulation_amp = 0.8
-            terrain = PlanetaryTerrain(size_x, size_y, res, base_slope, undulation_amp, undulation_wave, seed)
+            terrain = PlanetaryTerrain(size_x, size_y, res, base_slope_deg, undulation_amp, undulation_wave, seed)
             for _ in range(10):
                 rx = float(rng.uniform(10.0, 40.0))
                 ry = float(rng.uniform(10.0, 40.0))
@@ -57,9 +57,9 @@ class ScenarioGenerator:
             return terrain, meta
 
         elif scenario_id == "SC-03_steep_slopes":
-            base_slope = 16.0
+            base_slope_deg = 16.0
             undulation_amp = 1.2
-            terrain = PlanetaryTerrain(size_x, size_y, res, base_slope, undulation_amp, undulation_wave, seed)
+            terrain = PlanetaryTerrain(size_x, size_y, res, base_slope_deg, undulation_amp, undulation_wave, seed)
             for _ in range(6):
                 rx = float(rng.uniform(12.0, 38.0))
                 ry = float(rng.uniform(12.0, 38.0))
@@ -68,7 +68,7 @@ class ScenarioGenerator:
             return terrain, meta
 
         elif scenario_id == "SC-04_dense_obstacle_field":
-            terrain = PlanetaryTerrain(size_x, size_y, res, base_slope, undulation_amp, undulation_wave, seed)
+            terrain = PlanetaryTerrain(size_x, size_y, res, base_slope_deg, undulation_amp, undulation_wave, seed)
             for i in range(18):
                 rx = 10.0 + (i % 6) * 4.5 + float(rng.uniform(-1.0, 1.0))
                 ry = 10.0 + (i // 6) * 6.0 + float(rng.uniform(-1.0, 1.0))
@@ -77,7 +77,7 @@ class ScenarioGenerator:
             return terrain, meta
 
         elif scenario_id == "SC-05_narrow_passages":
-            terrain = PlanetaryTerrain(size_x, size_y, res, base_slope, undulation_amp, undulation_wave, seed)
+            terrain = PlanetaryTerrain(size_x, size_y, res, base_slope_deg, undulation_amp, undulation_wave, seed)
             for y_off in [12.0, 15.0, 18.0]:
                 terrain.add_boulder(16.0, y_off, radius_m=0.9, height_m=0.7)
                 terrain.add_boulder(20.5, y_off, radius_m=0.9, height_m=0.7)
@@ -85,14 +85,14 @@ class ScenarioGenerator:
             return terrain, meta
 
         elif scenario_id == "SC-06_crater_avoidance":
-            terrain = PlanetaryTerrain(size_x, size_y, res, base_slope, undulation_amp, undulation_wave, seed)
+            terrain = PlanetaryTerrain(size_x, size_y, res, base_slope_deg, undulation_amp, undulation_wave, seed)
             terrain.add_crater(15.0, 15.0, radius_m=3.5, depth_m=0.8)
             meta = ScenarioGenerator._build_meta(start_state, goal_pos, sensor_noise_mult, lidar_dropout_prob, wheel_slip_ratio)
             return terrain, meta
 
         elif scenario_id == "SC-07_sensor_noise":
             sensor_noise_mult = 3.0
-            terrain = PlanetaryTerrain(size_x, size_y, res, base_slope, undulation_amp, undulation_wave, seed)
+            terrain = PlanetaryTerrain(size_x, size_y, res, base_slope_deg, undulation_amp, undulation_wave, seed)
             for _ in range(12):
                 rx = float(rng.uniform(10.0, 35.0))
                 ry = float(rng.uniform(10.0, 35.0))
@@ -102,7 +102,7 @@ class ScenarioGenerator:
 
         elif scenario_id == "SC-08_sensor_dropout":
             lidar_dropout_prob = 0.35
-            terrain = PlanetaryTerrain(size_x, size_y, res, base_slope, undulation_amp, undulation_wave, seed)
+            terrain = PlanetaryTerrain(size_x, size_y, res, base_slope_deg, undulation_amp, undulation_wave, seed)
             for _ in range(8):
                 rx = float(rng.uniform(10.0, 35.0))
                 ry = float(rng.uniform(10.0, 35.0))
@@ -111,7 +111,7 @@ class ScenarioGenerator:
             return terrain, meta
 
         elif scenario_id == "SC-09_localization_drift":
-            terrain = PlanetaryTerrain(size_x, size_y, res, base_slope, undulation_amp, undulation_wave, seed)
+            terrain = PlanetaryTerrain(size_x, size_y, res, base_slope_deg, undulation_amp, undulation_wave, seed)
             for _ in range(12):
                 rx = float(rng.uniform(10.0, 35.0))
                 ry = float(rng.uniform(10.0, 35.0))
@@ -122,7 +122,7 @@ class ScenarioGenerator:
 
         elif scenario_id == "SC-10_wheel_slip_disturbance":
             wheel_slip_ratio = 0.45
-            terrain = PlanetaryTerrain(size_x, size_y, res, base_slope, undulation_amp, undulation_wave, seed)
+            terrain = PlanetaryTerrain(size_x, size_y, res, base_slope_deg, undulation_amp, undulation_wave, seed)
             terrain.set_regolith_friction_patch(12.0, 28.0, 12.0, 28.0, friction_mu=0.35)
             meta = ScenarioGenerator._build_meta(start_state, goal_pos, sensor_noise_mult, lidar_dropout_prob, wheel_slip_ratio)
             meta["slip_disturbance_active"] = True
@@ -130,7 +130,7 @@ class ScenarioGenerator:
 
         elif scenario_id == "SC-11_unexpected_obstacles":
             pop_up_obstacle = True
-            terrain = PlanetaryTerrain(size_x, size_y, res, base_slope, undulation_amp, undulation_wave, seed)
+            terrain = PlanetaryTerrain(size_x, size_y, res, base_slope_deg, undulation_amp, undulation_wave, seed)
             for _ in range(8):
                 rx = float(rng.uniform(10.0, 35.0))
                 ry = float(rng.uniform(10.0, 35.0))
@@ -141,7 +141,7 @@ class ScenarioGenerator:
 
         elif scenario_id == "SC-12_completely_blocked":
             completely_blocked = True
-            terrain = PlanetaryTerrain(size_x, size_y, res, base_slope, undulation_amp, undulation_wave, seed)
+            terrain = PlanetaryTerrain(size_x, size_y, res, base_slope_deg, undulation_amp, undulation_wave, seed)
             for y_wall in np.arange(8.0, 32.0, 1.2):
                 terrain.add_boulder(16.0, y_wall, radius_m=0.8, height_m=0.7)
             meta = ScenarioGenerator._build_meta(start_state, goal_pos, sensor_noise_mult, lidar_dropout_prob, wheel_slip_ratio)
@@ -149,14 +149,14 @@ class ScenarioGenerator:
             return terrain, meta
 
         elif scenario_id == "SC-13_low_traction_regolith":
-            terrain = PlanetaryTerrain(size_x, size_y, res, base_slope, undulation_amp, undulation_wave, seed)
+            terrain = PlanetaryTerrain(size_x, size_y, res, base_slope_deg, undulation_amp, undulation_wave, seed)
             terrain.set_regolith_friction_patch(0.0, size_x, 0.0, size_y, friction_mu=0.40)
             meta = ScenarioGenerator._build_meta(start_state, goal_pos, sensor_noise_mult, lidar_dropout_prob, wheel_slip_ratio=0.30)
             meta["low_traction_active"] = True
             return terrain, meta
 
         elif scenario_id == "SC-14_environmental_replan":
-            terrain = PlanetaryTerrain(size_x, size_y, res, base_slope=6.0, undulation_amp=0.7, undulation_wavelength_m=15.0, seed=seed)
+            terrain = PlanetaryTerrain(size_x, size_y, res, base_slope_deg=6.0, undulation_amp=0.7, undulation_wavelength_m=15.0, seed=seed)
             sun_elevation_deg = 15.0
             sun_azimuth_deg = 60.0
             for i in range(12):
@@ -170,7 +170,7 @@ class ScenarioGenerator:
 
         elif scenario_id == "SC-15_critical_fault_safestop":
             critical_fault = True
-            terrain = PlanetaryTerrain(size_x, size_y, res, base_slope, undulation_amp, undulation_wave, seed)
+            terrain = PlanetaryTerrain(size_x, size_y, res, base_slope_deg, undulation_amp, undulation_wave, seed)
             meta = ScenarioGenerator._build_meta(start_state, goal_pos, sensor_noise_mult, lidar_dropout_prob, wheel_slip_ratio)
             meta["critical_fault_active"] = critical_fault
             return terrain, meta
@@ -179,7 +179,7 @@ class ScenarioGenerator:
         elif scenario_id == "SC-16_extended_horizon_traverse":
             # Extended 45-meter traverse across multi-zone terrain
             goal_pos = np.array([45.0, 45.0])
-            terrain = PlanetaryTerrain(size_x, size_y, res, base_slope=4.0, undulation_amplitude_m=0.5, undulation_wavelength_m=18.0, seed=seed)
+            terrain = PlanetaryTerrain(size_x, size_y, res, base_slope_deg=4.0, undulation_amplitude_m=0.5, undulation_wavelength_m=18.0, seed=seed)
             for _ in range(16):
                 rx = float(rng.uniform(10.0, 42.0))
                 ry = float(rng.uniform(10.0, 42.0))
@@ -191,7 +191,7 @@ class ScenarioGenerator:
         elif scenario_id == "SC-17_unreachable_goal_recovery":
             # Goal deliberately positioned within an impassable ring of boulders
             goal_pos = np.array([24.0, 24.0])
-            terrain = PlanetaryTerrain(size_x, size_y, res, base_slope=0.0, undulation_amplitude_m=0.3, undulation_wavelength_m=15.0, seed=seed)
+            terrain = PlanetaryTerrain(size_x, size_y, res, base_slope_deg=0.0, undulation_amplitude_m=0.3, undulation_wavelength_m=15.0, seed=seed)
             # Enclosing boulder circle around goal
             for th in np.linspace(0.0, 2 * math.pi, 10, endpoint=False):
                 bx = 24.0 + 1.8 * math.cos(th)
@@ -203,7 +203,7 @@ class ScenarioGenerator:
 
         elif scenario_id == "SC-18_communication_latency_jitter":
             high_latency = True
-            terrain = PlanetaryTerrain(size_x, size_y, res, base_slope=3.0, undulation_amplitude_m=0.4, undulation_wavelength_m=15.0, seed=seed)
+            terrain = PlanetaryTerrain(size_x, size_y, res, base_slope_deg=3.0, undulation_amplitude_m=0.4, undulation_wavelength_m=15.0, seed=seed)
             for _ in range(10):
                 rx = float(rng.uniform(10.0, 35.0))
                 ry = float(rng.uniform(10.0, 35.0))
@@ -214,7 +214,7 @@ class ScenarioGenerator:
 
         elif scenario_id == "SC-19_transient_sensor_glitch":
             transient_glitch = True
-            terrain = PlanetaryTerrain(size_x, size_y, res, base_slope=2.0, undulation_amplitude_m=0.4, undulation_wavelength_m=15.0, seed=seed)
+            terrain = PlanetaryTerrain(size_x, size_y, res, base_slope_deg=2.0, undulation_amplitude_m=0.4, undulation_wavelength_m=15.0, seed=seed)
             for _ in range(8):
                 rx = float(rng.uniform(10.0, 35.0))
                 ry = float(rng.uniform(10.0, 35.0))
@@ -225,12 +225,12 @@ class ScenarioGenerator:
 
         elif scenario_id == "SC-20_combined_multihazard_stress":
             # Multi-hazard: steep slopes + boulder field + loose regolith + sensor noise
-            base_slope = 10.0
+            base_slope_deg = 10.0
             undulation_amp = 0.9
             sensor_noise_mult = 2.0
             lidar_dropout_prob = 0.20
             wheel_slip_ratio = 0.35
-            terrain = PlanetaryTerrain(size_x, size_y, res, base_slope, undulation_amp, undulation_wave, seed)
+            terrain = PlanetaryTerrain(size_x, size_y, res, base_slope_deg, undulation_amp, undulation_wave, seed)
             terrain.set_regolith_friction_patch(10.0, 35.0, 10.0, 35.0, friction_mu=0.45)
             for _ in range(14):
                 rx = float(rng.uniform(10.0, 35.0))
@@ -242,7 +242,7 @@ class ScenarioGenerator:
             return terrain, meta
 
         # Default fallback
-        terrain = PlanetaryTerrain(size_x, size_y, res, base_slope, undulation_amp, undulation_wave, seed)
+        terrain = PlanetaryTerrain(size_x, size_y, res, base_slope_deg, undulation_amp, undulation_wave, seed)
         meta = ScenarioGenerator._build_meta(start_state, goal_pos, sensor_noise_mult, lidar_dropout_prob, wheel_slip_ratio)
         return terrain, meta
 

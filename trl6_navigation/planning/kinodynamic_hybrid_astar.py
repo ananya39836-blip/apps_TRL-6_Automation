@@ -100,7 +100,7 @@ class KinodynamicHybridAStar:
     ) -> Optional[List[Tuple[float, float, float]]]:
         """Direct line-of-sight analytic connection when within terminal docking range (d <= 5.0m)."""
         dist_to_goal = math.hypot(goal_xy[0] - node.x, goal_xy[1] - node.y)
-        if dist_to_goal > 5.0:  # Restrict to terminal docking range
+        if dist_to_goal > 8.0:  # Restrict to terminal docking range
             return None
 
         # Check line-of-sight interpolation
@@ -146,7 +146,8 @@ class KinodynamicHybridAStar:
                     "iterations": 0,
                 }
 
-        start_h = self._heuristic_distance(sx, sy, syaw, gx, gy)
+        w_h = 1.80  # Weighted A* heuristic inflation factor for accelerated convergence
+        start_h = w_h * self._heuristic_distance(sx, sy, syaw, gx, gy)
         root = NodeSE2(sx, sy, syaw, g_cost=0.0, h_cost=start_h, parent_idx=None)
 
         open_heap: List[Tuple[float, int]] = []
@@ -226,7 +227,7 @@ class KinodynamicHybridAStar:
                     continue
 
                 closed_set[disc_key] = new_g
-                new_h = self._heuristic_distance(new_x, new_y, new_yaw, gx, gy)
+                new_h = w_h * self._heuristic_distance(new_x, new_y, new_yaw, gx, gy)
                 new_node = NodeSE2(new_x, new_y, new_yaw, g_cost=new_g, h_cost=new_h, parent_idx=curr_idx, steering_angle=steer)
                 nodes_pool.append(new_node)
                 new_node_idx = len(nodes_pool) - 1

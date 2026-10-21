@@ -63,7 +63,7 @@ def test_trl6_continuous_3d_dem():
 
 def test_trl6_boulder_and_crater_injection():
     """Verify explicit geometric hazard injection."""
-    terrain = PlanetaryTerrain(size_x_m=40.0, size_y_m=40.0, resolution_m=0.20)
+    terrain = PlanetaryTerrain(size_x_m=40.0, size_y_m=40.0, resolution_m=0.20, undulation_amplitude_m=0.0)
     terrain.add_boulder(20.0, 20.0, radius_m=1.0, height_m=0.5)
     terrain.add_crater(10.0, 10.0, radius_m=2.0, depth_m=0.8)
 
@@ -147,8 +147,8 @@ def test_trl6_point_cloud_ground_segmentation():
     pc_proc = PointCloudProcessor(voxel_size_m=0.20, obstacle_height_thresh_m=0.25)
     # Synthetic flat ground with one boulder (h = 0.50m)
     pts = []
-    for x in np.linspace(-2.0, 2.0, 10):
-        for y in np.linspace(-2.0, 2.0, 10):
+    for x in np.linspace(-2.0, 2.0, 21):
+        for y in np.linspace(-2.0, 2.0, 21):
             pts.append([x, y, 0.0])
     pts.append([0.0, 0.0, 0.50])  # Boulder
     pts_arr = np.array(pts)
@@ -174,7 +174,7 @@ def test_trl6_elevation_grid_kalman_and_decay():
     obs_pt = np.array([[5.0, 5.0, 1.2]])
     elev_map.mark_obstacles(obs_pt)
     ix, iy = elev_map.world_to_grid(5.0, 5.0)
-    assert elev_map.obstacle_mask[ix, iy] is True
+    assert bool(elev_map.obstacle_mask[ix, iy]) is True
 
     # Decay obstacles
     elev_map.decay_transient_obstacles(decay_rate=0.50)

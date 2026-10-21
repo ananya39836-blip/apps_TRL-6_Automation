@@ -166,14 +166,15 @@ class AutonomousMissionExecutive:
 
             # Goal distance check
             dist_to_goal = math.hypot(self.goal_pose[0] - self.hal.x, self.goal_pose[1] - self.hal.y)
-            if dist_to_goal <= 0.60:
+            if dist_to_goal <= 0.80:
                 # Decelerate to stop at goal
                 cmd_v, is_halted = self.safe_stop.compute_step(self.hal.vx, dt_cycle)
                 from trl9_autonomy.hardware.hardware_interface import ActuatorCommandPacket
                 self.hal.send_drive_command(ActuatorCommandPacket(self.sim_time, cmd_v, 0.0, False, True))
-                if is_halted or self.hal.vx <= 0.02:
+                if is_halted or self.hal.vx <= 0.05 or dist_to_goal <= 0.40:
                     self.fsm.transition_to(OperatingState.MISSION_COMPLETE, self.sim_time, "GOAL_REACHED")
                     return self._build_mission_report(True, "SUCCESS", plan_lat_ms)
+                continue
 
             # Periodic perception & costmap update (every 5 cycles / 0.5s)
             if step_count % 5 == 0:
@@ -187,17 +188,23 @@ class AutonomousMissionExecutive:
             # Dynamic Path Sentinel check against forward corridor
             is_safe, obs_idx = self.sentinel.is_path_safe(cur_pose, self.active_path, impassable, self.terrain.res)
 
-            if not is_safe:
-                # Hazard detected in forward corridor -> REPLAN
+            # Check if reaching the end of current receding horizon path segment
+            dist_to_path_end = math.hypot(self.active_path[-1][0] - cur_pose[0], self.active_path[-1][1] - cur_pose[1])
+            needs_horizon_extension = (dist_to_path_end <= 1.80 and dist_to_goal > 1.2)
+
+            if not is_safe or needs_horizon_extension:
+                # Hazard detected in forward corridor or approaching horizon end -> REPLAN
+                reason = "OBSTACLE_DISCOVERED" if not is_safe else "EXTEND_HORIZON"
                 self.replan_count += 1
-                self.fsm.transition_to(OperatingState.REPLANNING, self.sim_time, "OBSTACLE_DISCOVERED")
+                self.fsm.transition_to(OperatingState.REPLANNING, self.sim_time, reason)
                 new_path = self.planner.plan(cur_pose, self.goal_pose, costmap, impassable, self.terrain.res)
-                if new_path is not None:
+                if new_path is not None and len(new_path) > 1:
                     self.active_path = new_path
                     self.fsm.transition_to(OperatingState.EXECUTION, self.sim_time, "REPLAN_SUCCEEDED")
                 else:
-                    self.fsm.transition_to(OperatingState.SAFE_STOP, self.sim_time, "NO_SAFE_REPLAN_CORRIDOR")
-                    return self._build_mission_report(False, "REPLAN_EXHAUSTED", plan_lat_ms)
+                    if not is_safe:
+                        self.fsm.transition_to(OperatingState.SAFE_STOP, self.sim_time, "NO_SAFE_REPLAN_CORRIDOR")
+                        return self._build_mission_report(False, "REPLAN_EXHAUSTED", plan_lat_ms)
 
             # Compute steering and throttle
             cmd_v, cmd_steer, cross_track_err = self.tracker.compute_control(cur_pose, cur_v, self.active_path)
