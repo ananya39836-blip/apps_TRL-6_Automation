@@ -9,6 +9,7 @@ Implements:
 from __future__ import annotations
 import math
 from typing import Dict, Any
+import numpy as np
 
 
 class SoilTerramechanics:
